@@ -34,7 +34,7 @@ let server = new aws.ec2.Instance("web-server-www", {
     vpcSecurityGroupIds: [ group.id ], // reference the group object above
     ami: ami,
     userData: userData              // start a simple web server
-});
+}, { aliases: [{ name: "new-web-server" }] });
 
 exports.publicIp = server.publicIp;
 exports.publicHostName = server.publicDns;
