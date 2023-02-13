@@ -28,13 +28,13 @@ let userData =
 echo "Hello, Worldd!" > index.html
 nohup python -m SimpleHTTPServer 80 &`;
 
-let server = new aws.ec2.Instance("new-web-server-www", {
+let server = new aws.ec2.Instance("web-server-www", {
     tags: { "Name": "web-server-www" },
     instanceType: size,
     vpcSecurityGroupIds: [ group.id ], // reference the group object above
     ami: ami,
     userData: userData              // start a simple web server
-}, { aliases: [{ name: "web-server-www" }] });
+}, { parent: group });
 
 exports.publicIp = server.publicIp;
 exports.publicHostName = server.publicDns;
