@@ -25,7 +25,7 @@ let group = new aws.ec2.SecurityGroup("web-secgrp", {
 // (optional) create a simple web server using the startup script for the instance
 let userData =
 `#!/bin/bash
-echo "Hello, World!" > index.html
+echo "Hello, Worldd!" > index.html
 nohup python -m SimpleHTTPServer 80 &`;
 
 let server = new aws.ec2.Instance("web-server-www", {
@@ -34,7 +34,7 @@ let server = new aws.ec2.Instance("web-server-www", {
     vpcSecurityGroupIds: [ group.id ], // reference the group object above
     ami: ami,
     userData: userData              // start a simple web server
-}, { aliases: [{ name: "new-web-server" }] });
+} });
 
 exports.publicIp = server.publicIp;
 exports.publicHostName = server.publicDns;
