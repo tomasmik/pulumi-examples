@@ -29,3 +29,27 @@ let group2 = new aws.ec2.SecurityGroup("web-secgrp", {
         { protocol: "tcp", fromPort: 80, toPort: 80, cidrBlocks: ["0.0.0.0/0"] },
     ],
 }, { parent: group });
+
+// create a new security group for port 80
+let group3 = new aws.ec2.SecurityGroup("web-secgrp", {
+    ingress: [
+        { protocol: "tcp", fromPort: 22, toPort: 22, cidrBlocks: ["0.0.0.0/0"] },
+        { protocol: "tcp", fromPort: 80, toPort: 80, cidrBlocks: ["0.0.0.0/0"] },
+    ],
+}, { parent: group });
+
+// create a new security group for port 80
+let group4 = new aws.ec2.SecurityGroup("web-secgrp", {
+    ingress: [
+        { protocol: "tcp", fromPort: 22, toPort: 22, cidrBlocks: ["0.0.0.0/0"] },
+        { protocol: "tcp", fromPort: 80, toPort: 80, cidrBlocks: ["0.0.0.0/0"] },
+    ],
+});
+
+// create a new security group for port 80
+let group5 = new aws.ec2.SecurityGroup("web-secgrp", {
+    ingress: [
+        { protocol: "tcp", fromPort: 22, toPort: 22, cidrBlocks: ["0.0.0.0/0"] },
+        { protocol: "tcp", fromPort: 80, toPort: 80, cidrBlocks: ["0.0.0.0/0"] },
+    ],
+}, { parent: group4 });
