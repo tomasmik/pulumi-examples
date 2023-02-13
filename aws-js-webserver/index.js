@@ -15,12 +15,12 @@ let ami = aws.ec2.getAmi({
 }, { async: true }).then(result => result.id);
 
 // create a new security group for port 80
-let group = new aws.ec2.SecurityGroup("web-secgrp", {
+let group = new aws.ec2.SecurityGroup("new-web-secgrp", {
     ingress: [
         { protocol: "tcp", fromPort: 22, toPort: 22, cidrBlocks: ["0.0.0.0/0"] },
         { protocol: "tcp", fromPort: 80, toPort: 80, cidrBlocks: ["0.0.0.0/0"] },
     ],
-});
+}, { aliases: [{ name: "web-secgrp" }] });
 
 // (optional) create a simple web server using the startup script for the instance
 let userData =
